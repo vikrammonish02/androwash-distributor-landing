@@ -65,7 +65,13 @@ const Step3Calendar = ({ data }) => {
 
             {submitting && (
                 <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-                    <Loader2 className="animate-spin" size={24} style={{ margin: '0 auto', display: 'block' }} />
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        style={{ display: 'inline-block' }}
+                    >
+                        <Loader2 size={24} />
+                    </motion.div>
                     <p style={{ marginTop: '1rem', color: 'var(--color-text-muted)' }}>Submitting your application...</p>
                 </div>
             )}
