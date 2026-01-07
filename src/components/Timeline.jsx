@@ -26,10 +26,26 @@ const Timeline = () => {
                 </div>
             </div>
             <style>{`
-        @media (max-width: 768px) {
-          .desktop-line { display: none; }
-        }
-      `}</style>
+                @media (max-width: 768px) {
+                    .timeline {
+                        padding: 2rem 0 !important;
+                    }
+                    .timeline h2 {
+                        font-size: 1.5rem !important;
+                        margin-bottom: 2rem !important;
+                    }
+                    .desktop-line { 
+                        display: none; 
+                    }
+                    .timeline > div > div {
+                        flex-direction: column !important;
+                        gap: 2rem !important;
+                    }
+                    .timeline > div > div > div {
+                        flex: 1 1 auto !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

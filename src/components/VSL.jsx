@@ -34,6 +34,26 @@ const VSL = () => {
                     </div>
                 </div>
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .vsl {
+                        padding: 2rem 0 !important;
+                    }
+                    .vsl h2 {
+                        font-size: 1.5rem !important;
+                        margin-bottom: 0.75rem !important;
+                    }
+                    .vsl p {
+                        font-size: 1rem !important;
+                        margin-bottom: 2rem !important;
+                    }
+                    .vsl .btn {
+                        width: 100% !important;
+                        padding: 1rem 1.5rem !important;
+                        font-size: 1rem !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

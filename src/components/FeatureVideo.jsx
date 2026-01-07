@@ -54,6 +54,24 @@ const FeatureVideo = () => {
                     </div>
                 </motion.div>
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .feature-video {
+                        padding: 2rem 0 !important;
+                    }
+                    .feature-video h2 {
+                        font-size: 1.5rem !important;
+                        margin-bottom: 1rem !important;
+                    }
+                    .feature-video p {
+                        font-size: 1rem !important;
+                        margin-bottom: 2rem !important;
+                    }
+                    .feature-video > div > div {
+                        margin-bottom: 2rem !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

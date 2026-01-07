@@ -5,7 +5,7 @@ const PartnerProfile = () => {
         <section className="partner-profile section-padding" style={{ backgroundColor: 'var(--color-gray-100)' }}>
             <div className="container">
                 <h2 className="text-center" style={{ marginBottom: '4rem' }}>Ideal Partner Profile</h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '4rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '4rem' }} className="partner-grid">
                     {/* Who You Are */}
                     <div style={{ backgroundColor: 'var(--color-white)', padding: '3rem', borderRadius: '24px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
                         <h3 style={{ borderBottom: '2px solid var(--color-primary)', paddingBottom: '1rem', marginBottom: '2rem', display: 'inline-block' }}>Who You Are</h3>
@@ -58,10 +58,30 @@ const PartnerProfile = () => {
                 </div>
             </div>
             <style>{`
-        @media (max-width: 480px) {
-          .partner-profile .container > div { grid-template-columns: 1fr; }
-        }
-      `}</style>
+                @media (max-width: 768px) {
+                    .partner-profile {
+                        padding: 2rem 0 !important;
+                    }
+                    .partner-profile h2 {
+                        font-size: 1.5rem !important;
+                        margin-bottom: 2rem !important;
+                    }
+                    .partner-grid {
+                        grid-template-columns: 1fr !important;
+                        gap: 2rem !important;
+                    }
+                    .partner-grid > div {
+                        padding: 2rem 1.5rem !important;
+                    }
+                    .partner-grid h3 {
+                        font-size: 1.25rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .partner-grid li {
+                        margin-bottom: 1rem !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

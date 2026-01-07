@@ -57,6 +57,18 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent blank spaces between sections */
+main {
+  margin: 0;
+  padding: 0;
+}
+
+main > section {
+  margin: 0 !important;
 }
 
 /* Typography - ClickFunnels Style (BIG & BOLD) */
@@ -329,28 +341,71 @@ p {
 
 /* Mobile Optimizations */
 @media (max-width: 768px) {
+  /* Typography */
   h1 {
-    font-size: 2.25rem !important;
+    font-size: clamp(1.75rem, 8vw, 2.25rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
   }
 
   h2 {
-    font-size: 1.5rem !important;
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
   }
 
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 1.5rem) !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Section Spacing - No Blank Spaces */
   .section-padding {
-    padding: 3rem 0;
+    padding: 2.5rem 0 !important;
+    margin: 0 !important;
   }
 
+  section {
+    padding: 2.5rem 0 !important;
+    margin: 0 !important;
+    min-height: auto !important;
+  }
+
+  /* Container Padding */
+  .container {
+    padding: 0 1rem !important;
+  }
+
+  /* Buttons */
   .btn {
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    padding: 0.875rem 1.5rem !important;
+    font-size: 0.95rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 
   .btn-giant {
-    padding: 1.25rem 2rem;
-    font-size: 1.125rem;
+    padding: 1rem 1.5rem !important;
+    font-size: 1rem !important;
   }
 
+  /* Cards */
+  .glass-card {
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Grid Layouts */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Bottom Navigation */
   .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -359,10 +414,83 @@ p {
     background: rgba(11, 17, 32, 0.98);
     backdrop-filter: blur(20px);
     border-top: 1px solid var(--glass-border);
-    padding: 1rem;
+    padding: 0.875rem 1rem;
     display: flex;
     gap: 0.75rem;
     z-index: 1000;
-    padding-bottom: env(safe-area-inset-bottom, 1rem);
+    padding-bottom: env(safe-area-inset-bottom, 0.875rem);
+  }
+
+  /* Proper spacing between sections - No blank spaces */
+  section {
+    margin: 0 !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  section:first-of-type {
+    padding-top: 0 !important;
+  }
+
+  section:last-of-type {
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Remove excessive margins from children */
+  section > * {
+    margin-top: 0 !important;
+  }
+
+  section > *:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Form inputs */
+  .form-input {
+    padding: 0.875rem 1rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Trust badges */
+  .trust-badge {
+    font-size: 0.85rem !important;
+  }
+
+  /* Urgency badge */
+  .urgency-badge {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.875rem !important;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+  h1 {
+    font-size: clamp(1.5rem, 7vw, 2rem) !important;
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+  }
+
+  .section-padding {
+    padding: 2rem 0 !important;
+  }
+
+  section {
+    padding: 2rem 0 !important;
+  }
+
+  .container {
+    padding: 0 0.875rem !important;
+  }
+
+  .btn {
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .glass-card {
+    padding: 1.25rem !important;
   }
 }

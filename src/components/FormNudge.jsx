@@ -9,6 +9,7 @@ const FormNudge = () => {
     return (
         <motion.div
             ref={ref}
+            className="form-nudge"
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8 }}
@@ -74,6 +75,28 @@ const FormNudge = () => {
                     ✓ No credit card required &nbsp;&nbsp; ✓ Free consultation included
                 </p>
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .form-nudge {
+                        margin: 2rem auto !important;
+                        padding: 2rem 1.5rem !important;
+                    }
+                    .form-nudge h2 {
+                        font-size: 1.5rem !important;
+                        margin-bottom: 0.75rem !important;
+                        margin-top: 1rem !important;
+                    }
+                    .form-nudge p {
+                        font-size: 1rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .form-nudge .btn-giant {
+                        width: 100% !important;
+                        padding: 1rem 1.5rem !important;
+                        font-size: 1rem !important;
+                    }
+                }
+            `}</style>
         </motion.div>
     );
 };

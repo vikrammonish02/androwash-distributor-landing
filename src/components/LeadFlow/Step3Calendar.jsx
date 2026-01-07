@@ -136,6 +136,37 @@ const Step3Calendar = ({ data }) => {
             <p style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
                 📱 Prefer WhatsApp? <a href="https://wa.me/91XXXXXXXXXX" style={{ color: 'var(--color-success)', fontWeight: '600' }}>Chat with us directly</a>
             </p>
+            <style>{`
+                @media (max-width: 768px) {
+                    .glass-card {
+                        padding: 2rem 1.5rem !important;
+                    }
+                    .glass-card h2 {
+                        font-size: 1.5rem !important;
+                        margin-bottom: 0.75rem !important;
+                    }
+                    .glass-card p {
+                        font-size: 1rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .glass-card > div:first-child {
+                        width: 80px !important;
+                        height: 80px !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .glass-card > div:first-child svg {
+                        width: 40px !important;
+                        height: 40px !important;
+                    }
+                    .glass-card > div:nth-child(2) {
+                        padding: 1.5rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .glass-card > div:nth-child(2) > div {
+                        padding: 2rem 1rem !important;
+                    }
+                }
+            `}</style>
         </div>
     );
 };

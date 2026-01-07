@@ -22,7 +22,7 @@ const Testimonials = () => {
 
                 <h2 className="text-center" style={{ marginBottom: '3rem' }}>Trusted by Doctors & Distributors</h2>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }} className="testimonial-cards">
                     {socialProof.map((item, idx) => (
                         <div key={idx} className="glass-card" style={{ padding: '2.5rem', position: 'relative' }}>
                             <Quote size={40} color="var(--color-primary)" style={{ position: 'absolute', top: '1rem', right: '1rem', opacity: 0.3 }} />
@@ -38,6 +38,28 @@ const Testimonials = () => {
                     ))}
                 </div>
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .testimonials {
+                        padding: 2rem 0 !important;
+                    }
+                    .testimonials h2 {
+                        font-size: 1.5rem !important;
+                        margin-bottom: 2rem !important;
+                    }
+                    .testimonial-cards {
+                        grid-template-columns: 1fr !important;
+                        gap: 1.5rem !important;
+                    }
+                    .testimonial-cards .glass-card {
+                        padding: 1.5rem !important;
+                    }
+                    .testimonial-cards p {
+                        font-size: 1rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

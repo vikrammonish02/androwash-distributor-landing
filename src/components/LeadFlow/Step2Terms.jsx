@@ -113,6 +113,32 @@ const Step2Terms = ({ onNext, data }) => {
             >
                 Continue to Book Meeting <Check size={20} />
             </motion.button>
+            <style>{`
+                @media (max-width: 768px) {
+                    .glass-card {
+                        padding: 1.5rem !important;
+                    }
+                    .glass-card h2 {
+                        font-size: 1.5rem !important;
+                        margin-bottom: 0.5rem !important;
+                    }
+                    .glass-card p {
+                        font-size: 1rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .glass-card button {
+                        font-size: 1rem !important;
+                        padding: 0.75rem 0 !important;
+                    }
+                    .glass-card label {
+                        font-size: 0.95rem !important;
+                    }
+                    .glass-card .btn {
+                        padding: 0.875rem 1rem !important;
+                        font-size: 1rem !important;
+                    }
+                }
+            `}</style>
         </div>
     );
 };

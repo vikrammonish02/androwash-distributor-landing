@@ -16,7 +16,7 @@ const ProfitEngine = () => {
                 <h2 className="text-center" style={{ marginBottom: '1rem' }}>The Your Profit Engine</h2>
                 <p className="text-center" style={{ color: 'var(--color-text-muted)', marginBottom: '4rem', fontSize: '1.25rem' }}>Highly transparent margins with massive recurring potential.</p>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }} className="profit-cards">
                     <div className="glass-card" style={{ padding: '2.5rem' }}>
                         <h3 style={{ marginBottom: '1.5rem', color: 'var(--color-primary)' }}>One-Time Device Commissions</h3>
                         <div style={{ marginBottom: '2rem' }}>
@@ -53,10 +53,10 @@ const ProfitEngine = () => {
                     </div>
                 </div>
 
-                <div className="glass-card" style={{ marginTop: '5rem', padding: '3rem' }}>
+                <div className="glass-card profit-table-card" style={{ marginTop: '5rem', padding: '3rem' }}>
                     <h3 className="text-center" style={{ marginBottom: '3rem' }}>Scaling Your Monthly Income</h3>
-                    <div style={{ overflowX: 'auto' }}>
-                        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                    <div style={{ overflowX: 'auto' }} className="table-wrapper">
+                        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }} className="profit-table">
                             <thead>
                                 <tr style={{ borderBottom: '1px solid var(--glass-border)' }}>
                                     <th style={{ padding: '1.5rem', color: 'var(--color-text-muted)' }}>Number of Active Clinics</th>
@@ -85,6 +85,41 @@ const ProfitEngine = () => {
                     </div>
                 </div>
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .profit-engine {
+                        padding: 2rem 0 !important;
+                    }
+                    .profit-cards {
+                        grid-template-columns: 1fr !important;
+                        gap: 1.5rem !important;
+                    }
+                    .profit-cards .glass-card {
+                        padding: 1.5rem !important;
+                        margin-bottom: 0 !important;
+                    }
+                    .profit-table-card {
+                        margin-top: 2rem !important;
+                        padding: 1.5rem !important;
+                    }
+                    .profit-table-card h3 {
+                        font-size: 1.25rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .table-wrapper {
+                        overflow-x: auto;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                    .profit-table {
+                        font-size: 0.875rem !important;
+                        min-width: 500px;
+                    }
+                    .profit-table th,
+                    .profit-table td {
+                        padding: 1rem 0.75rem !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

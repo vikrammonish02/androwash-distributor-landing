@@ -41,7 +41,7 @@ const PartnershipPackages = () => {
             <div className="container">
                 <h2 className="text-center" style={{ marginBottom: '1rem' }}>Partnership Packages</h2>
                 <p className="text-center" style={{ marginBottom: '4rem', color: 'var(--color-text-muted)' }}>Choose the tier that fits your investment capacity.</p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }} className="package-cards">
                     {tiers.map((tier, idx) => (
                         <div key={idx} className="glass-card" style={{
                             padding: '3rem 2rem',
@@ -93,6 +93,25 @@ const PartnershipPackages = () => {
                     ))}
                 </div>
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .packages {
+                        padding: 2rem 0 !important;
+                    }
+                    .package-cards {
+                        grid-template-columns: 1fr !important;
+                        gap: 1.5rem !important;
+                    }
+                    .package-cards .glass-card {
+                        padding: 2rem 1.5rem !important;
+                        transform: scale(1) !important;
+                        margin-bottom: 0 !important;
+                    }
+                    .package-cards .glass-card h3 {
+                        font-size: 1.25rem !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

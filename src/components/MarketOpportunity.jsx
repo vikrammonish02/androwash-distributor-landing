@@ -48,6 +48,7 @@ const MarketOpportunity = () => {
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
                     style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}
+                    className="market-cards"
                 >
                     {data.map((item, idx) => (
                         <motion.div
@@ -69,6 +70,7 @@ const MarketOpportunity = () => {
                     transition={{ delay: 0.6, duration: 0.6 }}
                     className="glass-card"
                     style={{ marginTop: '4rem', padding: '3rem', background: 'rgba(30, 41, 59, 0.6)', textAlign: 'center', border: '1px solid var(--color-primary)' }}
+                    className="solution-card"
                 >
                     <h3 style={{ marginBottom: '1.5rem', color: 'var(--color-secondary)' }}>The AndroWash Solution</h3>
                     <p style={{ fontSize: '1.25rem', maxWidth: '800px', margin: '0 auto', color: 'white' }}>
@@ -78,6 +80,33 @@ const MarketOpportunity = () => {
                     </p>
                 </motion.div>
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .market-opportunity {
+                        padding: 2rem 0 !important;
+                    }
+                    .market-cards {
+                        grid-template-columns: 1fr !important;
+                        gap: 1.5rem !important;
+                    }
+                    .market-cards .glass-card {
+                        padding: 1.5rem !important;
+                        margin-bottom: 0 !important;
+                    }
+                    .solution-card {
+                        margin-top: 2rem !important;
+                        padding: 2rem 1.5rem !important;
+                    }
+                    .solution-card h3 {
+                        font-size: 1.25rem !important;
+                        margin-bottom: 1rem !important;
+                    }
+                    .solution-card p {
+                        font-size: 1rem !important;
+                        line-height: 1.6 !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

@@ -34,7 +34,7 @@ const LeadFlow = () => {
             {step === 1 && <TypeformStep1 onSubmit={handleStep1Submit} />}
 
             {step === 2 && (
-                <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '2rem' }}>
+                <div className="lead-flow-step" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '2rem' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ const LeadFlow = () => {
             )}
 
             {step === 3 && (
-                <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '2rem' }}>
+                <div className="lead-flow-step" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', padding: '2rem' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -56,6 +56,20 @@ const LeadFlow = () => {
                     </motion.div>
                 </div>
             )}
+            <style>{`
+                @media (max-width: 768px) {
+                    .lead-flow {
+                        min-height: auto !important;
+                        padding: 0 !important;
+                    }
+                    .lead-flow-step {
+                        min-height: auto !important;
+                        padding: 1.5rem 1rem !important;
+                        align-items: flex-start !important;
+                        padding-top: 2rem !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

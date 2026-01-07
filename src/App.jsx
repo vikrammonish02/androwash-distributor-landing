@@ -22,7 +22,7 @@ import AdminPanel from './components/Admin/AdminPanel';
 const LandingPage = () => {
     return (
         <>
-            <nav style={{ padding: '1.5rem 0', background: 'white', position: 'sticky', top: 0, zIndex: 100, borderBottom: '1px solid var(--color-gray-100)' }}>
+            <nav className="main-nav" style={{ padding: '1.5rem 0', background: 'white', position: 'sticky', top: 0, zIndex: 100, borderBottom: '1px solid var(--color-gray-100)' }}>
                 <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div className="logo" style={{
                         display: 'flex',
@@ -50,7 +50,7 @@ const LandingPage = () => {
                             }}>Distribution</span>
                         </div>
                     </div>
-                    <button className="btn btn-primary" onClick={() => document.getElementById('step-1')?.scrollIntoView({ behavior: 'smooth' })}>
+                    <button className="btn btn-primary nav-apply-btn" onClick={() => document.getElementById('step-1')?.scrollIntoView({ behavior: 'smooth' })}>
                         Apply Now
                     </button>
                 </div>
@@ -75,9 +75,9 @@ const LandingPage = () => {
             </main>
 
 
-            <footer style={{ background: 'var(--color-gray-800)', color: 'white', padding: '4rem 0' }}>
+            <footer className="main-footer" style={{ background: 'var(--color-gray-800)', color: 'white', padding: '4rem 0', marginTop: 0 }}>
                 <div className="container" style={{ position: 'relative' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem', marginBottom: '3rem' }}>
+                    <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem', marginBottom: '3rem' }}>
                         <div>
                             <div style={{ fontWeight: 'bold', fontSize: '1.25rem', marginBottom: '1.5rem' }}>Subhag HealthTech</div>
                             <p style={{ opacity: 0.7, fontSize: '0.875rem' }}>Building India's most advanced automated fertility solutions.</p>
@@ -120,8 +120,46 @@ const LandingPage = () => {
 
             <style>{`
                 @media (max-width: 768px) {
-                    .bottom-nav { display: flex !important; }
-                    .whatsapp-float { bottom: 6rem; }
+                    .main-nav {
+                        padding: 1rem 0 !important;
+                    }
+                    .logo {
+                        font-size: 1.1rem !important;
+                    }
+                    .logo img {
+                        height: 28px !important;
+                    }
+                    .logo span:first-of-type {
+                        font-size: 0.9rem !important;
+                    }
+                    .logo span:last-of-type {
+                        font-size: 0.65rem !important;
+                    }
+                    .nav-apply-btn {
+                        padding: 0.5rem 1rem !important;
+                        font-size: 0.875rem !important;
+                    }
+                    .main-footer {
+                        padding: 2.5rem 0 !important;
+                    }
+                    .footer-grid {
+                        grid-template-columns: 1fr !important;
+                        gap: 2rem !important;
+                        margin-bottom: 2rem !important;
+                    }
+                    main > section {
+                        margin-bottom: 0 !important;
+                        padding-bottom: 2.5rem !important;
+                    }
+                    main > section:last-child {
+                        padding-bottom: 0 !important;
+                    }
+                    .bottom-nav { 
+                        display: flex !important; 
+                    }
+                    .whatsapp-float { 
+                        bottom: 6rem; 
+                    }
                 }
             `}</style>
 

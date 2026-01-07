@@ -112,9 +112,9 @@ const TypeformStep1 = ({ onSubmit }) => {
     const progress = ((currentStep + 1) / steps.length) * 100;
 
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem' }}>
+        <div className="typeform-container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem' }}>
             {/* Progress Bar */}
-            <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '4px', background: 'var(--glass-border)' }}>
+            <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '4px', background: 'var(--glass-border)', zIndex: 1000 }}>
                 <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
@@ -124,7 +124,7 @@ const TypeformStep1 = ({ onSubmit }) => {
             </div>
 
             {/* Step Counter */}
-            <div style={{ position: 'fixed', top: '2rem', right: '2rem', color: 'var(--color-text-muted)', fontSize: '0.9rem' }}>
+            <div className="step-counter" style={{ position: 'fixed', top: '2rem', right: '2rem', color: 'var(--color-text-muted)', fontSize: '0.9rem', zIndex: 999 }}>
                 {currentStep + 1} / {steps.length}
             </div>
 
@@ -158,7 +158,7 @@ const TypeformStep1 = ({ onSubmit }) => {
                         </motion.div>
 
                         {/* Question */}
-                        <h2 style={{ fontSize: '2.5rem', marginBottom: '2rem', fontWeight: '700' }}>
+                        <h2 className="form-question" style={{ fontSize: '2.5rem', marginBottom: '2rem', fontWeight: '700' }}>
                             {currentStepData.question}
                         </h2>
 
@@ -222,6 +222,47 @@ const TypeformStep1 = ({ onSubmit }) => {
                     </motion.div>
                 </AnimatePresence>
             </div>
+            <style>{`
+                @media (max-width: 768px) {
+                    .typeform-container {
+                        min-height: auto !important;
+                        padding: 1.5rem 1rem !important;
+                        padding-top: 4rem !important;
+                        justify-content: flex-start !important;
+                    }
+                    .step-counter {
+                        top: 1rem !important;
+                        right: 1rem !important;
+                        font-size: 0.8rem !important;
+                    }
+                    .form-question {
+                        font-size: 1.75rem !important;
+                        margin-bottom: 1.5rem !important;
+                        line-height: 1.2 !important;
+                    }
+                    .typeform-container > div > div > div:first-child {
+                        width: 60px !important;
+                        height: 60px !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .typeform-container > div > div > div:first-child svg {
+                        width: 28px !important;
+                        height: 28px !important;
+                    }
+                    .typeform-container .form-input {
+                        font-size: 1rem !important;
+                        padding: 0.875rem 1rem !important;
+                    }
+                    .typeform-container .btn {
+                        padding: 0.875rem 1rem !important;
+                        font-size: 0.95rem !important;
+                    }
+                    .typeform-container p {
+                        font-size: 0.85rem !important;
+                        margin-top: 1rem !important;
+                    }
+                }
+            `}</style>
         </div>
     );
 };

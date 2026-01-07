@@ -63,7 +63,7 @@ const ImpactTrust = () => {
                         Real-World Impact
                     </div>
                     <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: '#0F172A' }}>The Chhatisgarh Campaign & Beyond</h2>
-                    <p style={{ maxWidth: '800px', margin: '0 auto', color: '#475569', fontSize: '1.125rem' }}>
+                    <p style={{ maxWidth: '800px', margin: '0 auto', color: '#475569', fontSize: '1.125rem' }} className="campaign-description">
                         We don't just sell devices; we change lives. Our campaigns across India prove that there is massive,
                         underserved demand for affordable fertility solutions.
                     </p>
@@ -180,19 +180,39 @@ const ImpactTrust = () => {
 
             <style dangerouslySetInnerHTML={{
                 __html: `
-                @media (max-width: 1024px) {
-                    .campaign-gallery { 
-                        grid-template-columns: repeat(2, 1fr) !important; 
+                @media (max-width: 768px) {
+                    .impact-trust {
+                        padding: 2rem 0 !important;
                     }
-                }
-                @media (max-width: 640px) {
+                    .impact-trust h2 {
+                        font-size: 1.75rem !important;
+                        margin-bottom: 1rem !important;
+                    }
+                    .campaign-description {
+                        font-size: 1rem !important;
+                        margin-bottom: 2rem !important;
+                    }
                     .campaign-gallery { 
                         grid-template-columns: 1fr !important; 
-                        grid-auto-rows: 250px !important; 
+                        grid-auto-rows: 250px !important;
+                        gap: 1rem !important;
+                        margin-bottom: 2rem !important;
                     }
                     .campaign-gallery > div { 
                         grid-column: span 1 !important; 
                         grid-row: span 1 !important; 
+                    }
+                    .impact-trust > div > div:last-child {
+                        grid-template-columns: 1fr !important;
+                        gap: 2rem !important;
+                    }
+                    .impact-trust > div > div:last-child > div:last-child {
+                        padding: 2rem 1.5rem !important;
+                    }
+                }
+                @media (max-width: 1024px) {
+                    .campaign-gallery { 
+                        grid-template-columns: repeat(2, 1fr) !important; 
                     }
                 }
             `}} />

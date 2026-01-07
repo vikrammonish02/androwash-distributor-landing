@@ -245,8 +245,29 @@ const Hero = () => {
 
             <style>{`
                 @media (max-width: 768px) {
-                    .hero { min-height: auto !important; padding-top: 3rem !important; }
-                    .urgency-badge { font-size: 0.75rem !important; }
+                    .hero { 
+                        min-height: auto !important; 
+                        padding: 2rem 0 !important;
+                        margin-bottom: 0 !important;
+                    }
+                    .urgency-badge { 
+                        font-size: 0.75rem !important;
+                        padding: 0.5rem 0.875rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .hero h1 {
+                        margin-bottom: 1rem !important;
+                    }
+                    .hero p {
+                        font-size: 1rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .hero .btn-giant {
+                        margin-bottom: 1rem !important;
+                    }
+                    .hero > div > div {
+                        margin-top: 2rem !important;
+                    }
                 }
             `}</style>
         </section>
