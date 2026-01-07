@@ -110,6 +110,10 @@ const PartnershipPackages = () => {
                     .package-cards .glass-card h3 {
                         font-size: 1.25rem !important;
                     }
+                    .package-cards .glass-card button {
+                        white-space: normal !important;
+                        word-wrap: break-word !important;
+                    }
                 }
             `}</style>
         </section>

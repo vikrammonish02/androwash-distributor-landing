@@ -112,6 +112,15 @@ const ProfitEngine = () => {
                     }
                     .profit-table {
                         font-size: 0.875rem !important;
+                        min-width: 100% !important;
+                    }
+                    .profit-table th,
+                    .profit-table td {
+                        padding: 0.75rem 0.5rem !important;
+                        font-size: 0.8rem !important;
+                        white-space: normal !important;
+                        word-wrap: break-word !important;
+                    }
                         min-width: 500px;
                     }
                     .profit-table th,

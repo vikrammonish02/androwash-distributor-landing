@@ -362,6 +362,8 @@ p {
     font-size: 1rem !important;
     line-height: 1.6 !important;
     margin-bottom: 1rem !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
   }
 
   /* Section Spacing - No Blank Spaces */
@@ -379,6 +381,20 @@ p {
   /* Container Padding */
   .container {
     padding: 0 1rem !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Prevent text overflow in text elements */
+  h1, h2, h3, h4, h5, h6, p, span, div, li, td, th {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  /* Ensure images are responsive */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
   }
 
   /* Buttons */
@@ -387,11 +403,16 @@ p {
     font-size: 0.95rem !important;
     width: 100% !important;
     max-width: 100% !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    text-align: center !important;
   }
 
   .btn-giant {
     padding: 1rem 1.5rem !important;
     font-size: 1rem !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
   }
 
   /* Cards */
