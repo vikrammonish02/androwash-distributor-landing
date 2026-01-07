@@ -99,7 +99,10 @@ const Step2Terms = ({ onNext, data }) => {
             <motion.button
                 className="btn btn-primary"
                 disabled={!allAgreed}
-                onClick={() => onNext({ agreedToTerms: true })}
+                onClick={() => onNext({ 
+                    agreedToTerms: true,
+                    marketing: agreed.marketing 
+                })}
                 whileHover={{ scale: allAgreed ? 1.02 : 1 }}
                 whileTap={{ scale: allAgreed ? 0.98 : 1 }}
                 style={{

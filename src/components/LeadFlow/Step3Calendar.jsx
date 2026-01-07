@@ -1,8 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, CheckCircle } from 'lucide-react';
+import { Calendar, CheckCircle, Loader2 } from 'lucide-react';
 
 const Step3Calendar = ({ data }) => {
+    const [submitted, setSubmitted] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        // Submit to HubSpot when component mounts
+        const submitToHubSpot = async () => {
+            if (submitted || submitting) return;
+
+            setSubmitting(true);
+            setError(null);
+
+            try {
+                const apiUrl = import.meta.env.VITE_API_URL || '/api';
+                const response = await fetch(`${apiUrl}/submit-to-hubspot`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Failed to submit form');
+                }
+
+                setSubmitted(true);
+            } catch (err) {
+                console.error('HubSpot submission error:', err);
+                setError(err.message);
+            } finally {
+                setSubmitting(false);
+            }
+        };
+
+        submitToHubSpot();
+    }, [data, submitted, submitting]);
     return (
         <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}>
             <motion.div
@@ -23,6 +62,41 @@ const Step3Calendar = ({ data }) => {
             >
                 <CheckCircle size={50} color="white" />
             </motion.div>
+
+            {submitting && (
+                <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+                    <Loader2 className="animate-spin" size={24} style={{ margin: '0 auto', display: 'block' }} />
+                    <p style={{ marginTop: '1rem', color: 'var(--color-text-muted)' }}>Submitting your application...</p>
+                </div>
+            )}
+
+            {error && (
+                <div style={{ 
+                    background: 'rgba(239, 68, 68, 0.1)', 
+                    border: '1px solid #ef4444', 
+                    borderRadius: '8px', 
+                    padding: '1rem', 
+                    marginBottom: '2rem',
+                    color: '#ef4444'
+                }}>
+                    <p>⚠️ {error}</p>
+                    <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                        Don't worry! Your information is safe. Please try again or contact us directly.
+                    </p>
+                </div>
+            )}
+
+            {submitted && !error && (
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    style={{ marginBottom: '2rem' }}
+                >
+                    <p style={{ color: 'var(--color-success)', fontWeight: '600' }}>
+                        ✅ Your application has been submitted successfully!
+                    </p>
+                </motion.div>
+            )}
 
             <h2 style={{ marginBottom: '1rem' }}>You're Almost There!</h2>
             <p style={{ marginBottom: '2rem', maxWidth: '500px', margin: '0 auto 2rem' }}>
