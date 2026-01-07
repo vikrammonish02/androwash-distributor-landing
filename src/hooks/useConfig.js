@@ -7,7 +7,8 @@ const useConfig = () => {
 
     const fetchConfig = async () => {
         try {
-            const response = await fetch('http://localhost:5001/api/config');
+            const apiUrl = import.meta.env.VITE_API_URL || '/api';
+            const response = await fetch(`${apiUrl}/config`);
             if (!response.ok) {
                 throw new Error('Failed to fetch config');
             }
@@ -26,7 +27,8 @@ const useConfig = () => {
 
     const updateConfig = async (newConfig, password) => {
         try {
-            const response = await fetch('http://localhost:5001/api/config', {
+            const apiUrl = import.meta.env.VITE_API_URL || '/api';
+            const response = await fetch(`${apiUrl}/config`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

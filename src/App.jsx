@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { MessageCircle } from 'lucide-react';
 import Hero from './components/Hero';
+import FeatureVideo from './components/FeatureVideo';
 import MarketOpportunity from './components/MarketOpportunity';
 import VSL from './components/VSL';
 import ImpactTrust from './components/ImpactTrust';
@@ -109,7 +110,7 @@ const LandingPage = () => {
             <ExitIntentPopup />
 
             <div className="bottom-nav" style={{ display: 'none', position: 'fixed', bottom: 0, left: 0, right: 0, background: 'white', padding: '1rem', boxShadow: '0 -2px 10px rgba(0,0,0,0.1)', zIndex: 1000, gap: '1rem' }}>
-                <a href="https://wa.me/91XXXXXXXXXX" className="btn btn-outline" style={{ flex: 1, justifyContent: 'center', borderRadius: '12px' }}>
+                <a href="https://wa.me/91XXXXXXXXXX" className="btn" style={{ flex: 1, justifyContent: 'center', borderRadius: '12px', background: '#25D366', color: 'white', border: 'none' }}>
                     WhatsApp
                 </a>
                 <button className="btn btn-primary" style={{ flex: 1, padding: '0.75rem' }} onClick={() => document.getElementById('step-1')?.scrollIntoView({ behavior: 'smooth' })}>
@@ -142,11 +143,14 @@ const LandingPage = () => {
                     justifyContent: 'center',
                     boxShadow: '0 10px 25px rgba(37,211,102,0.3)',
                     zIndex: 1000,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    transition: 'transform 0.3s ease'
                 }}
                 className="whatsapp-float"
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
             >
-                <MessageCircle size={32} />
+                <MessageCircle size={32} color="white" />
             </a>
         </>
     );

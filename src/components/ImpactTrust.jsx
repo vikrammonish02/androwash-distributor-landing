@@ -156,16 +156,18 @@ const ImpactTrust = () => {
 
                     <div style={{
                         padding: '3rem',
-                        background: 'var(--color-gray-900)',
+                        background: 'linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-light) 100%)',
                         borderRadius: '24px',
                         color: '#fff',
                         textAlign: 'center',
                         position: 'relative',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        border: '1px solid var(--glass-border)',
+                        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
                     }}>
                         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15), transparent)', pointerEvents: 'none' }}></div>
-                        <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem', position: 'relative', color: 'white' }}>Join the Subhag Distribution Network</h3>
-                        <p style={{ maxWidth: '700px', margin: '0 auto 2.5rem', color: 'rgba(255,255,255,0.9)', fontSize: '1.125rem' }}>
+                        <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem', position: 'relative', color: '#FFFFFF', fontWeight: '700' }}>Join the Subhag Distribution Network</h3>
+                        <p style={{ maxWidth: '700px', margin: '0 auto 2.5rem', color: '#FFFFFF', fontSize: '1.125rem', lineHeight: '1.7', opacity: 0.95 }}>
                             Our Chhatisgarh campaign saw over 500+ inquiries in just 7 days. Be the partner who brings this
                             life-changing technology to your region.
                         </p>
