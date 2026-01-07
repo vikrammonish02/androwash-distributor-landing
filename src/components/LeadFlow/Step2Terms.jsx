@@ -134,8 +134,13 @@ const Step2Terms = ({ onNext, data }) => {
                         font-size: 0.95rem !important;
                     }
                     .glass-card .btn {
-                        padding: 0.875rem 1rem !important;
+                        padding: 0.875rem 1.25rem !important;
                         font-size: 1rem !important;
+                        width: 100% !important;
+                    }
+                    .glass-card .btn svg {
+                        width: 18px !important;
+                        height: 18px !important;
                     }
                 }
             `}</style>

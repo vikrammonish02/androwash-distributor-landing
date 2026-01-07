@@ -188,17 +188,17 @@ const TypeformStep1 = ({ onSubmit }) => {
                         )}
 
                         {/* Navigation */}
-                        <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+                        <div className="form-navigation" style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
                             {currentStep > 0 && (
                                 <button
-                                    className="btn btn-outline"
+                                    className="btn btn-outline btn-back"
                                     onClick={handleBack}
                                 >
                                     <ArrowLeft size={20} /> Back
                                 </button>
                             )}
                             <motion.button
-                                className="btn btn-primary"
+                                className="btn btn-primary btn-continue"
                                 onClick={handleNext}
                                 disabled={!formData[currentStepData.key]}
                                 whileHover={{ scale: 1.02 }}
@@ -253,9 +253,31 @@ const TypeformStep1 = ({ onSubmit }) => {
                         font-size: 1rem !important;
                         padding: 0.875rem 1rem !important;
                     }
-                    .typeform-container .btn {
-                        padding: 0.875rem 1rem !important;
-                        font-size: 0.95rem !important;
+                    .typeform-container .form-navigation {
+                        flex-direction: row !important;
+                        gap: 0.75rem !important;
+                        margin-top: 1.5rem !important;
+                    }
+                    .typeform-container .btn-back {
+                        padding: 0.75rem 1rem !important;
+                        font-size: 0.9rem !important;
+                        min-width: auto !important;
+                        flex: 0 0 auto !important;
+                        width: auto !important;
+                    }
+                    .typeform-container .btn-continue {
+                        padding: 0.875rem 1.25rem !important;
+                        font-size: 1rem !important;
+                        flex: 1 1 auto !important;
+                        min-width: 0 !important;
+                    }
+                    .typeform-container .btn-back svg {
+                        width: 16px !important;
+                        height: 16px !important;
+                    }
+                    .typeform-container .btn-continue svg {
+                        width: 18px !important;
+                        height: 18px !important;
                     }
                     .typeform-container p {
                         font-size: 0.85rem !important;
