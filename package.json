@@ -1,0 +1,31 @@
+{
+  "name": "distributor-landing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "server": "node server/index.js",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.2",
+    "framer-motion": "^12.24.10",
+    "lucide-react": "^0.562.0",
+    "motion-dom": "^12.24.10",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-hook-form": "^7.70.0",
+    "react-router-dom": "^7.11.0",
+    "vite": "^7.3.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

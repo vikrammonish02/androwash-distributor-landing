@@ -1,0 +1,46 @@
+{
+  "vsl": {
+    "youtubeUrl": "https://www.youtube.com/embed/Rue1pMIGxIQ",
+    "title": "How to Build a Successful Distribution Business",
+    "description": "Watch this 4-minute presentation by our founder on the AndroWash vision and the distribution model."
+  },
+  "profitEngine": {
+    "deviceMargin": "₹18,900",
+    "avgSalesPrice": "₹95,000",
+    "consumableMargin": "₹2,400",
+    "avgKitsPerMonth": "3",
+    "monthlyIncomePerClinic": "₹7,200",
+    "tier1": {
+      "clinics": "10 Clinics",
+      "monthly": "₹72,000",
+      "annual": "₹8.64 Lakhs"
+    },
+    "tier2": {
+      "clinics": "50 Clinics",
+      "monthly": "₹3,60,000",
+      "annual": "₹43.20 Lakhs"
+    },
+    "tier3": {
+      "clinics": "100 Clinics",
+      "monthly": "₹7,20,000",
+      "annual": "₹86.40 Lakhs"
+    }
+  },
+  "partnershipPackages": [
+    {
+      "name": "Retailer Starter",
+      "investment": "₹5 Lakh",
+      "level": "District-level"
+    },
+    {
+      "name": "Distributor Standard",
+      "investment": "₹20 Lakh",
+      "level": "State-level"
+    },
+    {
+      "name": "Super Distributor Premium",
+      "investment": "₹50 Lakh",
+      "level": "Multi-state"
+    }
+  ]
+}
