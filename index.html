@@ -14,6 +14,14 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap"
     rel="stylesheet">
+  <script>
+    // Prevent browser scroll restoration - must be before React loads
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    // Ensure page starts at top immediately
+    window.scrollTo(0, 0);
+  </script>
 </head>
 
 <body>

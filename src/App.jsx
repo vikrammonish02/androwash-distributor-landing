@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { MessageCircle } from 'lucide-react';
 import Hero from './components/Hero';
@@ -20,6 +20,30 @@ import LeadFlow from './components/LeadFlow/LeadFlow';
 import AdminPanel from './components/Admin/AdminPanel';
 
 const LandingPage = () => {
+    // Ensure page always starts at the top on load
+    useEffect(() => {
+        // Scroll to top immediately when component mounts
+        window.scrollTo(0, 0);
+        
+        // Prevent browser scroll restoration
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual';
+        }
+        
+        // Handle hash navigation - scroll to top if no hash, or wait for content to load
+        const handleHashChange = () => {
+            if (!window.location.hash) {
+                window.scrollTo(0, 0);
+            }
+        };
+        
+        window.addEventListener('hashchange', handleHashChange);
+        
+        // Cleanup
+        return () => {
+            window.removeEventListener('hashchange', handleHashChange);
+        };
+    }, []);
     return (
         <>
             <nav className="main-nav" style={{ padding: '1.5rem 0', background: 'white', position: 'sticky', top: 0, zIndex: 100, borderBottom: '1px solid var(--color-gray-100)' }}>
