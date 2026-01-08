@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, CheckCircle, Loader2 } from 'lucide-react';
 
@@ -6,16 +6,29 @@ const Step3Calendar = ({ data }) => {
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
+    const hasAttemptedSubmission = useRef(false);
 
     useEffect(() => {
-        // Submit to HubSpot when component mounts
+        // Submit to HubSpot when component mounts - only run once
         const submitToHubSpot = async () => {
-            if (submitted || submitting) return;
+            // Prevent multiple submissions
+            if (hasAttemptedSubmission.current || submitted || submitting) {
+                return;
+            }
 
+            // Validate that we have required data
+            if (!data || !data.email || !data.fullName) {
+                console.error('Form data missing:', data);
+                setError('Missing required information. Please go back and complete the form.');
+                return;
+            }
+
+            hasAttemptedSubmission.current = true;
             setSubmitting(true);
             setError(null);
 
             try {
+                console.log('Submitting form data to HubSpot:', data);
                 const apiUrl = import.meta.env.VITE_API_URL || '/api';
                 const response = await fetch(`${apiUrl}/submit-to-hubspot`, {
                     method: 'POST',
@@ -26,9 +39,19 @@ const Step3Calendar = ({ data }) => {
                 });
 
                 const result = await response.json();
+                console.log('HubSpot API response:', result);
 
                 if (!response.ok) {
-                    throw new Error(result.error || 'Failed to submit form');
+                    // If HubSpot API key is not configured, still allow user to proceed
+                    if (result.error && result.error.includes('API key not configured')) {
+                        console.warn('HubSpot API key not configured - allowing user to proceed to calendar booking');
+                        setSubmitted(true);
+                        setTimeout(() => {
+                            window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
+                        }, 2000);
+                        return;
+                    }
+                    throw new Error(result.error || result.details || 'Failed to submit form');
                 }
 
                 setSubmitted(true);
@@ -39,14 +62,19 @@ const Step3Calendar = ({ data }) => {
                 }, 2000);
             } catch (err) {
                 console.error('HubSpot submission error:', err);
-                setError(err.message);
+                setError(err.message || 'Failed to submit form. Please try again.');
+                hasAttemptedSubmission.current = false; // Allow retry on error
             } finally {
                 setSubmitting(false);
             }
         };
 
-        submitToHubSpot();
-    }, [data, submitted, submitting]);
+        // Only submit if we haven't already submitted and data is available
+        if (!hasAttemptedSubmission.current && !submitted && !submitting && data) {
+            submitToHubSpot();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); // Empty dependency array - only run once on mount
     return (
         <div className="glass-card" style={{ padding: '3rem', textAlign: 'center' }}>
             <motion.div
@@ -91,9 +119,71 @@ const Step3Calendar = ({ data }) => {
                     color: '#ef4444'
                 }}>
                     <p>⚠️ {error}</p>
-                    <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                    <p style={{ fontSize: '0.875rem', marginTop: '0.5rem', marginBottom: '1rem' }}>
                         Don't worry! Your information is safe. Please try again or contact us directly.
                     </p>
+                    <motion.button
+                        className="btn btn-primary"
+                        onClick={async () => {
+                            hasAttemptedSubmission.current = false;
+                            setError(null);
+                            setSubmitting(true);
+                            
+                            try {
+                                console.log('Retrying submission with data:', data);
+                                const apiUrl = import.meta.env.VITE_API_URL || '/api';
+                                const response = await fetch(`${apiUrl}/submit-to-hubspot`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(data)
+                                });
+
+                                const result = await response.json();
+                                console.log('HubSpot API response (retry):', result);
+
+                                if (!response.ok) {
+                                    // If HubSpot API key is not configured, still allow user to proceed
+                                    if (result.error && result.error.includes('API key not configured')) {
+                                        console.warn('HubSpot API key not configured - allowing user to proceed to calendar booking');
+                                        setSubmitted(true);
+                                        hasAttemptedSubmission.current = true;
+                                        setTimeout(() => {
+                                            window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
+                                        }, 2000);
+                                        return;
+                                    }
+                                    throw new Error(result.error || result.details || 'Failed to submit form');
+                                }
+
+                                setSubmitted(true);
+                                hasAttemptedSubmission.current = true;
+                                
+                                setTimeout(() => {
+                                    window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
+                                }, 2000);
+                            } catch (err) {
+                                console.error('HubSpot submission error (retry):', err);
+                                setError(err.message || 'Failed to submit form. Please try again.');
+                                hasAttemptedSubmission.current = false;
+                            } finally {
+                                setSubmitting(false);
+                            }
+                        }}
+                        disabled={submitting}
+                        whileHover={{ scale: submitting ? 1 : 1.02 }}
+                        whileTap={{ scale: submitting ? 1 : 0.98 }}
+                        style={{
+                            width: '100%',
+                            padding: '0.75rem 1.5rem',
+                            fontSize: '1rem',
+                            opacity: submitting ? 0.6 : 1,
+                            cursor: submitting ? 'not-allowed' : 'pointer'
+                        }}
+                    >
+                        {submitting ? 'Retrying...' : 'Retry Submission'}
+                    </motion.button>
                 </div>
             )}
 
@@ -161,7 +251,7 @@ const Step3Calendar = ({ data }) => {
             </div>
 
             <p style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
-                📱 Prefer WhatsApp? <a href="https://wa.me/91XXXXXXXXXX" style={{ color: 'var(--color-success)', fontWeight: '600' }}>Chat with us directly</a>
+                📱 Prefer WhatsApp? <a href="https://wa.me/919036490490" style={{ color: 'var(--color-success)', fontWeight: '600' }}>Chat with us directly</a>
             </p>
             <style>{`
                 @media (max-width: 768px) {

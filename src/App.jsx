@@ -134,7 +134,7 @@ const LandingPage = () => {
             <ExitIntentPopup />
 
             <div className="bottom-nav" style={{ display: 'none', position: 'fixed', bottom: 0, left: 0, right: 0, background: 'white', padding: '1rem', boxShadow: '0 -2px 10px rgba(0,0,0,0.1)', zIndex: 1000, gap: '1rem' }}>
-                <a href="https://wa.me/91XXXXXXXXXX" className="btn" style={{ flex: 1, justifyContent: 'center', borderRadius: '12px', background: '#25D366', color: 'white', border: 'none' }}>
+                <a href="https://wa.me/919036490490" className="btn" style={{ flex: 1, justifyContent: 'center', borderRadius: '12px', background: '#25D366', color: 'white', border: 'none' }}>
                     WhatsApp
                 </a>
                 <button className="btn btn-primary" style={{ flex: 1, padding: '0.75rem' }} onClick={() => document.getElementById('step-1')?.scrollIntoView({ behavior: 'smooth' })}>
@@ -188,7 +188,7 @@ const LandingPage = () => {
             `}</style>
 
             <a
-                href="https://wa.me/91XXXXXXXXXX"
+                href="https://wa.me/919036490490"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
