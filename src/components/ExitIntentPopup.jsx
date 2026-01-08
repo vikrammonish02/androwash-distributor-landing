@@ -69,7 +69,7 @@ const ExitIntentPopup = () => {
                                 Wait! Don't Miss Out
                             </h2>
                             <p style={{ fontSize: '1.1rem', marginBottom: '2rem', color: 'var(--color-text)' }}>
-                                See how much you can earn in 2025. Download our <strong>Exclusive Revenue Projection Sheet</strong> before you go.
+                                See how much you can earn in 2026. Download our <strong>Exclusive Revenue Projection Sheet</strong> before you go.
                             </p>
 
                             <ul style={{ textAlign: 'left', marginBottom: '2rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', paddingLeft: '2rem' }}>
