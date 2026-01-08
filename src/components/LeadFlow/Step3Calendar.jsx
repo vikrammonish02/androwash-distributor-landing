@@ -32,6 +32,11 @@ const Step3Calendar = ({ data }) => {
                 }
 
                 setSubmitted(true);
+                
+                // Auto-redirect to Topmate calendar after 2 seconds
+                setTimeout(() => {
+                    window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
+                }, 2000);
             } catch (err) {
                 console.error('HubSpot submission error:', err);
                 setError(err.message);
@@ -101,6 +106,9 @@ const Step3Calendar = ({ data }) => {
                     <p style={{ color: 'var(--color-success)', fontWeight: '600' }}>
                         ✅ Your application has been submitted successfully!
                     </p>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)', marginTop: '0.5rem' }}>
+                        Redirecting you to book your strategy call...
+                    </p>
                 </motion.div>
             )}
 
@@ -121,16 +129,35 @@ const Step3Calendar = ({ data }) => {
                     <span style={{ fontWeight: '600', fontSize: '1.125rem' }}>Schedule Your Strategy Call</span>
                 </div>
 
-                <div style={{
-                    background: 'var(--color-bg)',
-                    borderRadius: 'var(--radius-sm)',
-                    padding: '3rem',
-                    border: '2px dashed var(--glass-border)',
-                    color: 'var(--color-text-muted)'
+                <motion.button
+                    className="btn btn-primary"
+                    onClick={() => window.open('https://topmate.io/subhaghealhtech/1284610', '_blank')}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{
+                        width: '100%',
+                        padding: '1.25rem 2rem',
+                        fontSize: '1.125rem',
+                        fontWeight: '600',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '0.75rem',
+                        marginTop: '1rem'
+                    }}
+                >
+                    <Calendar size={20} />
+                    Book Your Free Strategy Call
+                </motion.button>
+
+                <p style={{ 
+                    fontSize: '0.875rem', 
+                    color: 'var(--color-text-muted)', 
+                    marginTop: '1rem',
+                    lineHeight: '1.6'
                 }}>
-                    <p>Calendly Widget</p>
-                    <small>calendly.com/androwash/discovery</small>
-                </div>
+                    <strong>What to expect:</strong> A quick 15–20 minute conversation where we'll walk you through how Androwash is helping distributors rapidly grow their business.
+                </p>
             </div>
 
             <p style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
