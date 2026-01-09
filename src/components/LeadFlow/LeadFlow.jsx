@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import TypeformStep1 from './TypeformStep1';
 import Step2Terms from './Step2Terms';
 import Step3Calendar from './Step3Calendar';
@@ -8,7 +8,33 @@ const LeadFlow = () => {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({});
     const hiddenFormRef = useRef(null);
+    const sectionRef = useRef(null);
 
+    // Enable distraction-free focus mode when form section is visible
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+                        document.body.classList.add('form-focus-mode');
+                    } else {
+                        document.body.classList.remove('form-focus-mode');
+                    }
+                });
+            },
+            { threshold: [0, 0.3, 0.5, 0.7, 1] }
+        );
+
+        observer.observe(section);
+
+        return () => {
+            observer.disconnect();
+            document.body.classList.remove('form-focus-mode');
+        };
+    }, []);
     const triggerHubSpotCapture = () => {
         if (hiddenFormRef.current) {
             // Create a custom event and dispatch it if needed, 
@@ -31,7 +57,7 @@ const LeadFlow = () => {
     };
 
     return (
-        <section id="step-1" className="lead-flow" style={{ minHeight: '100vh', position: 'relative' }}>
+        <section ref={sectionRef} id="step-1" className="lead-flow" style={{ minHeight: '100vh', position: 'relative' }}>
             {/* Background Gradient */}
             <div style={{
                 position: 'absolute',

@@ -744,3 +744,26 @@ p {
     bottom: 6rem !important;
   }
 }
+
+/* ========================================
+   FORM FOCUS MODE - Distraction-Free Form Filling
+   ======================================== */
+body.form-focus-mode .main-nav,
+body.form-focus-mode .main-footer,
+body.form-focus-mode .whatsapp-float,
+body.form-focus-mode .bottom-nav,
+body.form-focus-mode .exit-intent-popup,
+body.form-focus-mode .form-nudge {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Smooth transition for focus mode */
+.main-nav,
+.main-footer,
+.whatsapp-float,
+.bottom-nav {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
