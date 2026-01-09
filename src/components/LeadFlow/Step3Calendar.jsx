@@ -8,6 +8,11 @@ const Step3Calendar = ({ data, onBeforeSubmit }) => {
     const [error, setError] = useState(null);
     const hasAttemptedSubmission = useRef(false);
 
+    // HubSpot Configuration - Frontend-Only Integration (No API Key Required)
+    const PORTAL_ID = '7869119';
+    const FORM_GUID = 'd15bc7c5-ed69-4602-b8fd-a4b6e6bb7e17';
+    const HUBSPOT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${PORTAL_ID}/${FORM_GUID}`;
+
     useEffect(() => {
         // Submit to HubSpot when component mounts - only run once
         const submitToHubSpot = async () => {
@@ -27,54 +32,60 @@ const Step3Calendar = ({ data, onBeforeSubmit }) => {
             setSubmitting(true);
             setError(null);
 
-            // Trigger HubSpot capture (Approach 1) if provided
+            // Trigger HubSpot capture (legacy approach) if provided
             if (onBeforeSubmit) {
                 onBeforeSubmit();
             }
 
             try {
-                console.log('Submitting form data to HubSpot:', data);
-                const apiUrl = import.meta.env.VITE_API_URL || '/api';
-                const response = await fetch(`${apiUrl}/submit-to-hubspot`, {
+                console.log('Submitting form data to HubSpot (Frontend API):', data);
+
+                // Parse full name into first/last name
+                const nameParts = data.fullName.trim().split(' ');
+                const firstName = nameParts[0] || '';
+                const lastName = nameParts.slice(1).join(' ') || '';
+
+                // Get HubSpot tracking cookie (if available)
+                const hutk = document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*=\s*([^;]*).*$)|^.*$/, "$1");
+
+                // Prepare HubSpot payload with proper field mapping
+                const payload = {
+                    fields: [
+                        { objectTypeId: "0-1", name: "firstname", value: firstName },
+                        { objectTypeId: "0-1", name: "lastname", value: lastName },
+                        { objectTypeId: "0-1", name: "email", value: data.email },
+                        { objectTypeId: "0-1", name: "phone", value: data.phone || "" },
+                        { objectTypeId: "0-1", name: "message", value: `City: ${data.city || 'N/A'} | Business Type: ${data.businessType || 'N/A'} | Investment Range: ${data.investmentRange || 'N/A'}` }
+                    ],
+                    context: {
+                        hutk: hutk || undefined,
+                        pageUri: window.location.href,
+                        pageName: document.title
+                    }
+                };
+
+                const response = await fetch(HUBSPOT_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(payload)
                 });
 
-                const resultText = await response.text();
-                let result;
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('✅ Form submitted successfully to HubSpot!', result);
+                    setSubmitted(true);
 
-                try {
-                    result = JSON.parse(resultText);
-                } catch (e) {
-                    console.error('Server returned non-JSON response:', resultText.substring(0, 500));
-                    const contentType = response.headers.get('content-type');
-                    throw new Error(`Server returned HTML instead of JSON (Status: ${response.status}, Content-Type: ${contentType}). This usually means the API endpoint is unreachable or misconfigured.`);
+                    // Auto-redirect to Topmate calendar after 2 seconds
+                    setTimeout(() => {
+                        window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
+                    }, 2000);
+                } else {
+                    const errorData = await response.json();
+                    console.error('❌ HubSpot form submission failed:', errorData);
+                    throw new Error(errorData.message || 'Failed to submit form to HubSpot');
                 }
-
-                console.log('HubSpot API response:', result);
-
-                if (!response.ok) {
-                    // If HubSpot API key is not configured, still allow user to proceed
-                    if (result.error && result.error.includes('API key not configured')) {
-                        console.warn('HubSpot API key not configured - allowing user to proceed to calendar booking');
-                        setSubmitted(true);
-                        setTimeout(() => {
-                            window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
-                        }, 2000);
-                        return;
-                    }
-                    throw new Error(result.error || result.details || 'Failed to submit form');
-                }
-
-                setSubmitted(true);
-
-                // Auto-redirect to Topmate calendar after 2 seconds
-                setTimeout(() => {
-                    window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
-                }, 2000);
             } catch (err) {
                 console.error('HubSpot submission error:', err);
                 setError(err.message || 'Failed to submit form. Please try again.');
@@ -146,47 +157,53 @@ const Step3Calendar = ({ data, onBeforeSubmit }) => {
 
                             try {
                                 console.log('Retrying submission with data:', data);
-                                const apiUrl = import.meta.env.VITE_API_URL || '/api';
-                                const response = await fetch(`${apiUrl}/submit-to-hubspot`, {
+
+                                // Parse full name into first/last name
+                                const nameParts = data.fullName.trim().split(' ');
+                                const firstName = nameParts[0] || '';
+                                const lastName = nameParts.slice(1).join(' ') || '';
+
+                                // Get HubSpot tracking cookie (if available)
+                                const hutk = document.cookie.replace(/(?:(?:^|.*;\s*)hubspotutk\s*=\s*([^;]*).*$)|^.*$/, "$1");
+
+                                // Prepare HubSpot payload with proper field mapping
+                                const payload = {
+                                    fields: [
+                                        { objectTypeId: "0-1", name: "firstname", value: firstName },
+                                        { objectTypeId: "0-1", name: "lastname", value: lastName },
+                                        { objectTypeId: "0-1", name: "email", value: data.email },
+                                        { objectTypeId: "0-1", name: "phone", value: data.phone || "" },
+                                        { objectTypeId: "0-1", name: "message", value: `City: ${data.city || 'N/A'} | Business Type: ${data.businessType || 'N/A'} | Investment Range: ${data.investmentRange || 'N/A'}` }
+                                    ],
+                                    context: {
+                                        hutk: hutk || undefined,
+                                        pageUri: window.location.href,
+                                        pageName: document.title
+                                    }
+                                };
+
+                                const response = await fetch(HUBSPOT_URL, {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
                                     },
-                                    body: JSON.stringify(data)
+                                    body: JSON.stringify(payload)
                                 });
 
-                                const resultText = await response.text();
-                                let result;
+                                if (response.ok) {
+                                    const result = await response.json();
+                                    console.log('✅ Form submitted successfully to HubSpot (retry)!', result);
+                                    setSubmitted(true);
+                                    hasAttemptedSubmission.current = true;
 
-                                try {
-                                    result = JSON.parse(resultText);
-                                } catch (e) {
-                                    console.error('Server returned non-JSON response (retry):', resultText.substring(0, 500));
-                                    throw new Error(`Server returned HTML instead of JSON. Status: ${response.status}`);
+                                    setTimeout(() => {
+                                        window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
+                                    }, 2000);
+                                } else {
+                                    const errorData = await response.json();
+                                    console.error('❌ HubSpot form submission failed (retry):', errorData);
+                                    throw new Error(errorData.message || 'Failed to submit form to HubSpot');
                                 }
-
-                                console.log('HubSpot API response (retry):', result);
-
-                                if (!response.ok) {
-                                    // If HubSpot API key is not configured, still allow user to proceed
-                                    if (result.error && result.error.includes('API key not configured')) {
-                                        console.warn('HubSpot API key not configured - allowing user to proceed to calendar booking');
-                                        setSubmitted(true);
-                                        hasAttemptedSubmission.current = true;
-                                        setTimeout(() => {
-                                            window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
-                                        }, 2000);
-                                        return;
-                                    }
-                                    throw new Error(result.error || result.details || 'Failed to submit form');
-                                }
-
-                                setSubmitted(true);
-                                hasAttemptedSubmission.current = true;
-
-                                setTimeout(() => {
-                                    window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
-                                }, 2000);
                             } catch (err) {
                                 console.error('HubSpot submission error (retry):', err);
                                 setError(err.message || 'Failed to submit form. Please try again.');
