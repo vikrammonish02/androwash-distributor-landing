@@ -48,7 +48,7 @@ const LeadFlow = () => {
                 ref={hiddenFormRef}
                 id="contact-form"
                 method="POST"
-                action="/submit"
+                action="/api/submit-to-hubspot"
                 onSubmit={(e) => {
                     e.preventDefault();
                     console.log('HubSpot hidden form event captured');

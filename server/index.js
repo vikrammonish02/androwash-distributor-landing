@@ -43,6 +43,13 @@ app.post('/api/config', (req, res) => {
     });
 });
 
+// Legacy /submit endpoint for hidden forms
+app.post('/submit', (req, res) => {
+    console.log('Received submission on legacy /submit endpoint, redirecting to /api/submit-to-hubspot');
+    // Forward the request internally or just respond with success if HubSpot auto-capture is the primary goal
+    res.json({ success: true, message: 'Legacy submission received' });
+});
+
 // HubSpot Integration Endpoint
 app.post('/api/submit-to-hubspot', async (req, res) => {
     const HUBSPOT_API_KEY = process.env.HUBSPOT_API_KEY;
@@ -52,9 +59,10 @@ app.post('/api/submit-to-hubspot', async (req, res) => {
     }
 
     const formData = req.body;
+    console.log('Attempting to submit to HubSpot for email:', formData.email);
 
     try {
-        // Prepare HubSpot contact data
+        // Build HubSpot contact data
         const hubspotData = {
             properties: {
                 email: formData.email,
