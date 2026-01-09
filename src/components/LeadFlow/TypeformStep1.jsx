@@ -129,100 +129,129 @@ const TypeformStep1 = ({ onSubmit }) => {
             </div>
 
             <div style={{ maxWidth: '600px', margin: '0 auto', width: '100%' }}>
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={currentStep}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -50 }}
-                        transition={{ duration: 0.4 }}
-                    >
-                        {/* Icon */}
+                <form id="lead-form" onSubmit={(e) => e.preventDefault()}>
+                    <AnimatePresence mode="wait">
                         <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: 0.2, type: 'spring' }}
-                            style={{
-                                width: '80px',
-                                height: '80px',
-                                borderRadius: '50%',
-                                background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                marginBottom: '2rem',
-                                boxShadow: '0 10px 40px var(--color-primary-glow)'
-                            }}
+                            key={currentStep}
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -50 }}
+                            transition={{ duration: 0.4 }}
                         >
-                            <Icon size={36} color="white" />
-                        </motion.div>
-
-                        {/* Question */}
-                        <h2 className="form-question" style={{ fontSize: '2.5rem', marginBottom: '2rem', fontWeight: '700' }}>
-                            {currentStepData.question}
-                        </h2>
-
-                        {/* Input */}
-                        {currentStepData.type === 'select' ? (
-                            <select
-                                ref={inputRef}
-                                className="form-input form-select"
-                                value={formData[currentStepData.key]}
-                                onChange={(e) => handleChange(e.target.value)}
-                                onKeyPress={handleKeyPress}
-                            >
-                                {currentStepData.options.map((opt) => (
-                                    <option key={opt.value} value={opt.value}>{opt.label}</option>
-                                ))}
-                            </select>
-                        ) : (
-                            <input
-                                ref={inputRef}
-                                type={currentStepData.type}
-                                className="form-input"
-                                placeholder={currentStepData.placeholder}
-                                value={formData[currentStepData.key]}
-                                onChange={(e) => handleChange(e.target.value)}
-                                onKeyPress={handleKeyPress}
-                            />
-                        )}
-
-                        {/* Navigation */}
-                        <div className="form-navigation" style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-                            {currentStep > 0 && (
-                                <button
-                                    className="btn btn-outline btn-back"
-                                    onClick={handleBack}
-                                >
-                                    <ArrowLeft size={20} /> Back
-                                </button>
-                            )}
-                            <motion.button
-                                className="btn btn-primary btn-continue"
-                                onClick={handleNext}
-                                disabled={!formData[currentStepData.key]}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
+                            {/* Icon */}
+                            <motion.div
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ delay: 0.2, type: 'spring' }}
+                                className="icon-box"
                                 style={{
-                                    flex: 1,
-                                    opacity: formData[currentStepData.key] ? 1 : 0.5
+                                    width: '80px',
+                                    height: '80px',
+                                    borderRadius: '50%',
+                                    background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    marginBottom: '2rem',
+                                    boxShadow: '0 10px 40px var(--color-primary-glow)'
                                 }}
                             >
-                                {currentStep === steps.length - 1 ? (
-                                    <>Submit <Check size={20} /></>
-                                ) : (
-                                    <>Continue <ArrowRight size={20} /></>
-                                )}
-                            </motion.button>
-                        </div>
+                                <Icon size={36} color="white" />
+                            </motion.div>
 
-                        <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
-                            Press <kbd style={{ background: 'var(--color-bg-card)', padding: '0.25rem 0.5rem', borderRadius: '4px', marginLeft: '0.25rem' }}>Enter ↵</kbd> to continue
-                        </p>
-                    </motion.div>
-                </AnimatePresence>
+                            {/* Question */}
+                            <h2 className="form-question" style={{ fontSize: '2.5rem', marginBottom: '2rem', fontWeight: '700' }}>
+                                {currentStepData.question}
+                            </h2>
+
+                            {/* Input */}
+                            {currentStepData.type === 'select' ? (
+                                <select
+                                    ref={inputRef}
+                                    name={currentStepData.key === 'businessType' ? 'company' : (currentStepData.key === 'investmentRange' ? 'message' : currentStepData.key)}
+                                    className="form-input form-select"
+                                    value={formData[currentStepData.key]}
+                                    onChange={(e) => handleChange(e.target.value)}
+                                    onKeyPress={handleKeyPress}
+                                >
+                                    {currentStepData.options.map((opt) => (
+                                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                    ))}
+                                </select>
+                            ) : (
+                                <input
+                                    ref={inputRef}
+                                    name={currentStepData.key === 'fullName' ? 'firstname' : currentStepData.key}
+                                    type={currentStepData.type}
+                                    className="form-input"
+                                    placeholder={currentStepData.placeholder}
+                                    value={formData[currentStepData.key]}
+                                    onChange={(e) => handleChange(e.target.value)}
+                                    onKeyPress={handleKeyPress}
+                                />
+                            )}
+
+                            {/* Navigation */}
+                            <div className="form-navigation" style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+                                {currentStep > 0 && (
+                                    <button
+                                        className="btn btn-outline btn-back"
+                                        onClick={handleBack}
+                                    >
+                                        <ArrowLeft size={20} /> Back
+                                    </button>
+                                )}
+                                <motion.button
+                                    className="btn btn-primary btn-continue"
+                                    onClick={handleNext}
+                                    disabled={!formData[currentStepData.key]}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    style={{
+                                        flex: 1,
+                                        opacity: formData[currentStepData.key] ? 1 : 0.5
+                                    }}
+                                >
+                                    {currentStep === steps.length - 1 ? (
+                                        <>Submit <Check size={20} /></>
+                                    ) : (
+                                        <>Continue <ArrowRight size={20} /></>
+                                    )}
+                                </motion.button>
+                            </div>
+
+                            <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
+                                Press <kbd style={{ background: 'var(--color-bg-card)', padding: '0.25rem 0.5rem', borderRadius: '4px', marginLeft: '0.25rem' }}>Enter ↵</kbd> to continue
+                            </p>
+                        </motion.div>
+                    </AnimatePresence>
+                </form>
             </div>
             <style>{`
+                .typeform-container {
+                    background: radial-gradient(circle at center, var(--color-bg-light) 0%, var(--color-bg) 100%);
+                }
+                .form-question {
+                    background: linear-gradient(135deg, white 0%, var(--color-text-muted) 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    line-height: 1.2;
+                }
+                kbd {
+                    box-shadow: 0 2px 0 rgba(0,0,0,0.5);
+                    border: 1px solid var(--glass-border);
+                }
+                .form-input {
+                    background: rgba(255, 255, 255, 0.03) !important;
+                    border: 1px solid var(--glass-border) !important;
+                    font-size: 1.5rem !important;
+                    padding: 1.5rem !important;
+                    border-radius: var(--radius-md) !important;
+                }
+                .form-input:focus {
+                    border-color: var(--color-primary) !important;
+                    background: rgba(255, 255, 255, 0.05) !important;
+                }
                 @media (max-width: 768px) {
                     .typeform-container {
                         min-height: auto !important;
@@ -238,50 +267,35 @@ const TypeformStep1 = ({ onSubmit }) => {
                     .form-question {
                         font-size: 1.75rem !important;
                         margin-bottom: 1.5rem !important;
-                        line-height: 1.2 !important;
                     }
-                    .typeform-container > div > div > div:first-child {
+                    .icon-box {
                         width: 60px !important;
                         height: 60px !important;
                         margin-bottom: 1.5rem !important;
                     }
-                    .typeform-container > div > div > div:first-child svg {
+                    .icon-box svg {
                         width: 28px !important;
                         height: 28px !important;
                     }
-                    .typeform-container .form-input {
-                        font-size: 1rem !important;
-                        padding: 0.875rem 1rem !important;
+                    .form-input {
+                        font-size: 1.1rem !important;
+                        padding: 1rem !important;
                     }
-                    .typeform-container .form-navigation {
+                    .form-navigation {
                         flex-direction: row !important;
                         gap: 0.75rem !important;
                         margin-top: 1.5rem !important;
                     }
-                    .typeform-container .btn-back {
+                    .btn-back {
                         padding: 0.75rem 1rem !important;
                         font-size: 0.9rem !important;
-                        min-width: auto !important;
-                        flex: 0 0 auto !important;
                         width: auto !important;
+                        flex: 0 0 auto !important;
                     }
-                    .typeform-container .btn-continue {
+                    .btn-continue {
                         padding: 0.875rem 1.25rem !important;
                         font-size: 1rem !important;
                         flex: 1 1 auto !important;
-                        min-width: 0 !important;
-                    }
-                    .typeform-container .btn-back svg {
-                        width: 16px !important;
-                        height: 16px !important;
-                    }
-                    .typeform-container .btn-continue svg {
-                        width: 18px !important;
-                        height: 18px !important;
-                    }
-                    .typeform-container p {
-                        font-size: 0.85rem !important;
-                        margin-top: 1rem !important;
                     }
                 }
             `}</style>

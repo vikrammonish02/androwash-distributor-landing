@@ -68,9 +68,8 @@ const MarketOpportunity = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ delay: 0.6, duration: 0.6 }}
-                    className="glass-card"
+                    className="glass-card solution-card"
                     style={{ marginTop: '4rem', padding: '3rem', background: 'rgba(30, 41, 59, 0.6)', textAlign: 'center', border: '1px solid var(--color-primary)' }}
-                    className="solution-card"
                 >
                     <h3 style={{ marginBottom: '1.5rem', color: 'var(--color-secondary)' }}>The AndroWash Solution</h3>
                     <p style={{ fontSize: '1.25rem', maxWidth: '800px', margin: '0 auto', color: 'white' }}>

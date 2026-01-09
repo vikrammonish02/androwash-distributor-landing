@@ -7,7 +7,7 @@ const Hero = () => {
     const { config, loading } = useConfig();
     const [isPlaying, setIsPlaying] = useState(false);
 
-    const youtubeUrl = config?.vsl?.youtubeUrl || "https://www.youtube.com/embed/Rue1pMIGxIQ";
+    const youtubeUrl = config?.vsl?.youtubeUrl || "https://www.youtube.com/embed/G7kL6Zrr79U";
 
     return (
         <section className="hero section-padding" style={{ position: 'relative', overflow: 'hidden', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>

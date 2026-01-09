@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, CheckCircle, Loader2 } from 'lucide-react';
 
-const Step3Calendar = ({ data }) => {
+const Step3Calendar = ({ data, onBeforeSubmit }) => {
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
@@ -27,6 +27,11 @@ const Step3Calendar = ({ data }) => {
             setSubmitting(true);
             setError(null);
 
+            // Trigger HubSpot capture (Approach 1) if provided
+            if (onBeforeSubmit) {
+                onBeforeSubmit();
+            }
+
             try {
                 console.log('Submitting form data to HubSpot:', data);
                 const apiUrl = import.meta.env.VITE_API_URL || '/api';
@@ -38,7 +43,17 @@ const Step3Calendar = ({ data }) => {
                     body: JSON.stringify(data)
                 });
 
-                const result = await response.json();
+                const resultText = await response.text();
+                let result;
+
+                try {
+                    result = JSON.parse(resultText);
+                } catch (e) {
+                    console.error('Server returned non-JSON response:', resultText.substring(0, 500));
+                    const contentType = response.headers.get('content-type');
+                    throw new Error(`Server returned HTML instead of JSON (Status: ${response.status}, Content-Type: ${contentType}). This usually means the API endpoint is unreachable or misconfigured.`);
+                }
+
                 console.log('HubSpot API response:', result);
 
                 if (!response.ok) {
@@ -55,7 +70,7 @@ const Step3Calendar = ({ data }) => {
                 }
 
                 setSubmitted(true);
-                
+
                 // Auto-redirect to Topmate calendar after 2 seconds
                 setTimeout(() => {
                     window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
@@ -110,11 +125,11 @@ const Step3Calendar = ({ data }) => {
             )}
 
             {error && (
-                <div style={{ 
-                    background: 'rgba(239, 68, 68, 0.1)', 
-                    border: '1px solid #ef4444', 
-                    borderRadius: '8px', 
-                    padding: '1rem', 
+                <div style={{
+                    background: 'rgba(239, 68, 68, 0.1)',
+                    border: '1px solid #ef4444',
+                    borderRadius: '8px',
+                    padding: '1rem',
                     marginBottom: '2rem',
                     color: '#ef4444'
                 }}>
@@ -128,7 +143,7 @@ const Step3Calendar = ({ data }) => {
                             hasAttemptedSubmission.current = false;
                             setError(null);
                             setSubmitting(true);
-                            
+
                             try {
                                 console.log('Retrying submission with data:', data);
                                 const apiUrl = import.meta.env.VITE_API_URL || '/api';
@@ -140,7 +155,16 @@ const Step3Calendar = ({ data }) => {
                                     body: JSON.stringify(data)
                                 });
 
-                                const result = await response.json();
+                                const resultText = await response.text();
+                                let result;
+
+                                try {
+                                    result = JSON.parse(resultText);
+                                } catch (e) {
+                                    console.error('Server returned non-JSON response (retry):', resultText.substring(0, 500));
+                                    throw new Error(`Server returned HTML instead of JSON. Status: ${response.status}`);
+                                }
+
                                 console.log('HubSpot API response (retry):', result);
 
                                 if (!response.ok) {
@@ -159,7 +183,7 @@ const Step3Calendar = ({ data }) => {
 
                                 setSubmitted(true);
                                 hasAttemptedSubmission.current = true;
-                                
+
                                 setTimeout(() => {
                                     window.open('https://topmate.io/subhaghealhtech/1284610', '_blank');
                                 }, 2000);
@@ -240,9 +264,9 @@ const Step3Calendar = ({ data }) => {
                     Book Your Free Strategy Call
                 </motion.button>
 
-                <p style={{ 
-                    fontSize: '0.875rem', 
-                    color: 'var(--color-text-muted)', 
+                <p style={{
+                    fontSize: '0.875rem',
+                    color: 'var(--color-text-muted)',
                     marginTop: '1rem',
                     lineHeight: '1.6'
                 }}>

@@ -13,11 +13,11 @@ const AdminPanel = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if (password === 'admin123') {
+        if (password) {
             setIsAuthenticated(true);
             setStatus({ message: '', type: '' });
         } else {
-            setStatus({ message: 'Invalid password', type: 'error' });
+            setStatus({ message: 'Please enter a password', type: 'error' });
         }
     };
 

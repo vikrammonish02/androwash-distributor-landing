@@ -1,0 +1,427 @@
+{
+  "id": "0c418e7f-ee9a-4c10-ad49-8d63251ca86e",
+  "name": "androwash-distributor",
+  "deletedAt": null,
+  "workspace": {
+    "name": "Vikram Singh's Projects"
+  },
+  "environments": {
+    "edges": [
+      {
+        "node": {
+          "id": "e8678038-f823-4296-bbfa-6061f71e5bf6",
+          "name": "production",
+          "canAccess": true,
+          "deletedAt": null,
+          "serviceInstances": {
+            "edges": [
+              {
+                "node": {
+                  "id": "0d487378-97e4-4753-a275-0b114717e7b8",
+                  "serviceId": "0ca568a4-bd68-4aa6-aae7-0175e494cc9d",
+                  "serviceName": "express-backend",
+                  "environmentId": "e8678038-f823-4296-bbfa-6061f71e5bf6",
+                  "latestDeployment": {
+                    "canRedeploy": false,
+                    "id": "934ffb30-96e0-4c49-8bc9-4fd9a626d226",
+                    "meta": {
+                      "buildOnly": false,
+                      "configErrors": [
+                        "Failed to create code snapshot. Please review your last commit, or try again.",
+                        "If this error persists, please reach out to the Railway team."
+                      ],
+                      "logsV2": true,
+                      "reason": "deploy",
+                      "runtime": "V2",
+                      "serviceManifest": {
+                        "build": {
+                          "buildCommand": null,
+                          "buildEnvironment": null,
+                          "builder": "RAILPACK",
+                          "dockerfilePath": null,
+                          "nixpacksConfigPath": null,
+                          "nixpacksPlan": null,
+                          "watchPatterns": []
+                        },
+                        "deploy": {
+                          "cronSchedule": null,
+                          "drainingSeconds": null,
+                          "healthcheckPath": null,
+                          "healthcheckTimeout": null,
+                          "limitOverride": null,
+                          "multiRegionConfig": {
+                            "us-west2": {
+                              "numReplicas": 1
+                            }
+                          },
+                          "numReplicas": 1,
+                          "overlapSeconds": null,
+                          "preDeployCommand": null,
+                          "region": null,
+                          "registryCredentials": null,
+                          "requiredMountPath": null,
+                          "restartPolicyMaxRetries": 10,
+                          "restartPolicyType": "ON_FAILURE",
+                          "runtime": "V2",
+                          "sleepApplication": false,
+                          "startCommand": null,
+                          "useLegacyStacker": false
+                        }
+                      },
+                      "volumeMounts": []
+                    },
+                    "status": "FAILED",
+                    "createdAt": "2026-01-09T09:53:34.240Z",
+                    "deploymentStopped": true
+                  },
+                  "source": {
+                    "repo": null,
+                    "image": null
+                  },
+                  "domains": {
+                    "serviceDomains": [
+                      {
+                        "id": "e7982796-9bb1-4cfc-974a-f120f9b774af",
+                        "domain": "express-backend-production-e1da.up.railway.app",
+                        "targetPort": null
+                      }
+                    ],
+                    "customDomains": []
+                  },
+                  "cronSchedule": null,
+                  "nextCronRunAt": null,
+                  "startCommand": null
+                }
+              },
+              {
+                "node": {
+                  "id": "1ad59af4-6a5d-42ba-a62d-e22086e33528",
+                  "serviceId": "eb2816d4-2e8e-4c02-b981-48a9138c5a91",
+                  "serviceName": "androwash-distributor-landing",
+                  "environmentId": "e8678038-f823-4296-bbfa-6061f71e5bf6",
+                  "latestDeployment": {
+                    "canRedeploy": true,
+                    "id": "3bc73045-fc33-4d10-afbf-1fc3162e41ab",
+                    "meta": {
+                      "branch": "main",
+                      "buildOnly": false,
+                      "commitAuthor": "",
+                      "commitHash": "47f11997428ed97573dc09594e8db7796f1811ac",
+                      "commitMessage": "update year to 2026 in ExitIntentPopup",
+                      "configFile": "railway.json",
+                      "fileServiceManifest": {
+                        "build": {
+                          "builder": "DOCKERFILE",
+                          "dockerfilePath": "Dockerfile"
+                        },
+                        "deploy": {
+                          "healthcheckPath": "/",
+                          "restartPolicyType": "ON_FAILURE"
+                        }
+                      },
+                      "ignoreWatchPatterns": true,
+                      "imageDigest": "sha256:f8f33594e22fc2121fabad9424fb52e6c01dc73811b79d19be9f43a40d3db510",
+                      "isPublicRepoDeploy": true,
+                      "logsV2": true,
+                      "nixpacksProviders": [
+                        "node"
+                      ],
+                      "patchId": "3eac898a-6385-4b47-92bf-685ddd28fca2",
+                      "propertyFileMapping": {
+                        "build.builder": "$.build.builder",
+                        "build.dockerfilePath": "$.build.dockerfilePath",
+                        "deploy.healthcheckPath": "$.deploy.healthcheckPath",
+                        "deploy.restartPolicyType": "$.deploy.restartPolicyType"
+                      },
+                      "reason": "deploy",
+                      "repo": "vikrammonish02/androwash-distributor-landing",
+                      "rootDirectory": null,
+                      "runtime": "V2",
+                      "serviceManifest": {
+                        "build": {
+                          "buildCommand": null,
+                          "buildEnvironment": null,
+                          "builder": "DOCKERFILE",
+                          "dockerfilePath": "Dockerfile",
+                          "nixpacksConfigPath": null,
+                          "nixpacksPlan": null,
+                          "watchPatterns": []
+                        },
+                        "deploy": {
+                          "cronSchedule": null,
+                          "drainingSeconds": null,
+                          "healthcheckPath": "/",
+                          "healthcheckTimeout": null,
+                          "limitOverride": null,
+                          "multiRegionConfig": {
+                            "us-west2": {
+                              "numReplicas": 1
+                            }
+                          },
+                          "numReplicas": 1,
+                          "overlapSeconds": null,
+                          "preDeployCommand": null,
+                          "region": null,
+                          "registryCredentials": null,
+                          "requiredMountPath": null,
+                          "restartPolicyMaxRetries": 10,
+                          "restartPolicyType": "ON_FAILURE",
+                          "runtime": "V2",
+                          "sleepApplication": false,
+                          "startCommand": null,
+                          "useLegacyStacker": false
+                        }
+                      },
+                      "volumeMounts": []
+                    },
+                    "status": "SUCCESS",
+                    "createdAt": "2026-01-09T09:49:39.332Z",
+                    "deploymentStopped": false
+                  },
+                  "source": {
+                    "repo": "vikrammonish02/androwash-distributor-landing",
+                    "image": null
+                  },
+                  "domains": {
+                    "serviceDomains": [
+                      {
+                        "id": "b7a76e02-2bdc-463f-8c1e-b16c533e1117",
+                        "domain": "androwash-distributor-landing-production.up.railway.app",
+                        "targetPort": 8080
+                      }
+                    ],
+                    "customDomains": []
+                  },
+                  "cronSchedule": null,
+                  "nextCronRunAt": null,
+                  "startCommand": null
+                }
+              },
+              {
+                "node": {
+                  "id": "1b5275ce-d6aa-4668-978b-53bdf8c1b2c0",
+                  "serviceId": "9aeb8868-852e-48d2-a155-d0de3b13b945",
+                  "serviceName": "androwash-distributor",
+                  "environmentId": "e8678038-f823-4296-bbfa-6061f71e5bf6",
+                  "latestDeployment": {
+                    "canRedeploy": true,
+                    "id": "027fe634-23c3-4ea6-a8c4-8ad4f756e465",
+                    "meta": {
+                      "buildOnly": false,
+                      "configFile": "railway.json",
+                      "fileServiceManifest": {
+                        "build": {
+                          "builder": "DOCKERFILE",
+                          "dockerfilePath": "Dockerfile"
+                        },
+                        "deploy": {
+                          "healthcheckPath": "/",
+                          "restartPolicyType": "ON_FAILURE"
+                        }
+                      },
+                      "ignoreWatchPatterns": true,
+                      "imageDigest": "sha256:14638ec81be4e33efaf557f3f72dd2c1dd9287fa5b2492006e14b7e94e7f2dd2",
+                      "logsV2": true,
+                      "nixpacksProviders": [
+                        "node"
+                      ],
+                      "propertyFileMapping": {
+                        "build.builder": "$.build.builder",
+                        "build.dockerfilePath": "$.build.dockerfilePath",
+                        "deploy.healthcheckPath": "$.deploy.healthcheckPath",
+                        "deploy.restartPolicyType": "$.deploy.restartPolicyType"
+                      },
+                      "reason": "redeploy",
+                      "rootDirectory": null,
+                      "runtime": "V2",
+                      "serviceManifest": {
+                        "build": {
+                          "buildCommand": null,
+                          "buildEnvironment": null,
+                          "builder": "DOCKERFILE",
+                          "dockerfilePath": "Dockerfile",
+                          "nixpacksConfigPath": null,
+                          "nixpacksPlan": null,
+                          "watchPatterns": []
+                        },
+                        "deploy": {
+                          "cronSchedule": null,
+                          "drainingSeconds": null,
+                          "healthcheckPath": "/",
+                          "healthcheckTimeout": null,
+                          "limitOverride": null,
+                          "multiRegionConfig": {
+                            "us-west2": {
+                              "numReplicas": 1
+                            }
+                          },
+                          "numReplicas": 1,
+                          "overlapSeconds": null,
+                          "preDeployCommand": null,
+                          "region": null,
+                          "registryCredentials": null,
+                          "requiredMountPath": null,
+                          "restartPolicyMaxRetries": 10,
+                          "restartPolicyType": "ON_FAILURE",
+                          "runtime": "V2",
+                          "sleepApplication": false,
+                          "startCommand": null,
+                          "useLegacyStacker": false
+                        }
+                      },
+                      "volumeMounts": []
+                    },
+                    "status": "SUCCESS",
+                    "createdAt": "2026-01-07T22:23:01.786Z",
+                    "deploymentStopped": false
+                  },
+                  "source": null,
+                  "domains": {
+                    "serviceDomains": [
+                      {
+                        "id": "4d3d4e01-5428-4e33-8f99-1102484a3fc6",
+                        "domain": "androwash-distributor-production.up.railway.app",
+                        "targetPort": null
+                      }
+                    ],
+                    "customDomains": []
+                  },
+                  "cronSchedule": null,
+                  "nextCronRunAt": null,
+                  "startCommand": null
+                }
+              },
+              {
+                "node": {
+                  "id": "e1cb0b19-7263-4af4-9746-2aaab479d387",
+                  "serviceId": "92df6d06-0bc3-479b-bbb1-e95588eef5b2",
+                  "serviceName": "backend-api",
+                  "environmentId": "e8678038-f823-4296-bbfa-6061f71e5bf6",
+                  "latestDeployment": {
+                    "canRedeploy": true,
+                    "id": "81e19451-5071-4ef1-8bae-9649442a00a0",
+                    "meta": {
+                      "buildOnly": false,
+                      "configFile": "railway.json",
+                      "fileServiceManifest": {
+                        "build": {
+                          "builder": "DOCKERFILE",
+                          "dockerfilePath": "Dockerfile"
+                        },
+                        "deploy": {
+                          "healthcheckPath": "/",
+                          "restartPolicyType": "ON_FAILURE"
+                        }
+                      },
+                      "imageDigest": "sha256:b5593e0f15830c0dfe44dfecf63ede55a3a7299d51465e34a57158f0f1e5afb1",
+                      "logsV2": true,
+                      "nixpacksProviders": [
+                        "node"
+                      ],
+                      "propertyFileMapping": {
+                        "build.builder": "$.build.builder",
+                        "build.dockerfilePath": "$.build.dockerfilePath",
+                        "deploy.healthcheckPath": "$.deploy.healthcheckPath",
+                        "deploy.restartPolicyType": "$.deploy.restartPolicyType"
+                      },
+                      "reason": "deploy",
+                      "rootDirectory": null,
+                      "runtime": "V2",
+                      "serviceManifest": {
+                        "build": {
+                          "buildCommand": null,
+                          "buildEnvironment": null,
+                          "builder": "DOCKERFILE",
+                          "dockerfilePath": "Dockerfile",
+                          "nixpacksConfigPath": null,
+                          "nixpacksPlan": null,
+                          "watchPatterns": []
+                        },
+                        "deploy": {
+                          "cronSchedule": null,
+                          "drainingSeconds": null,
+                          "healthcheckPath": "/",
+                          "healthcheckTimeout": null,
+                          "limitOverride": null,
+                          "multiRegionConfig": {
+                            "us-west2": {
+                              "numReplicas": 1
+                            }
+                          },
+                          "numReplicas": 1,
+                          "overlapSeconds": null,
+                          "preDeployCommand": null,
+                          "region": null,
+                          "registryCredentials": null,
+                          "requiredMountPath": null,
+                          "restartPolicyMaxRetries": 10,
+                          "restartPolicyType": "ON_FAILURE",
+                          "runtime": "V2",
+                          "sleepApplication": false,
+                          "startCommand": null,
+                          "useLegacyStacker": false
+                        }
+                      },
+                      "volumeMounts": []
+                    },
+                    "status": "SUCCESS",
+                    "createdAt": "2026-01-07T21:14:41.682Z",
+                    "deploymentStopped": false
+                  },
+                  "source": {
+                    "repo": null,
+                    "image": null
+                  },
+                  "domains": {
+                    "serviceDomains": [
+                      {
+                        "id": "a0ce82ef-7fd9-4b46-8ded-a2d9fbf017f0",
+                        "domain": "backend-api-production-c0f1.up.railway.app",
+                        "targetPort": null
+                      }
+                    ],
+                    "customDomains": []
+                  },
+                  "cronSchedule": null,
+                  "nextCronRunAt": null,
+                  "startCommand": null
+                }
+              }
+            ]
+          },
+          "volumeInstances": {
+            "edges": []
+          }
+        }
+      }
+    ]
+  },
+  "services": {
+    "edges": [
+      {
+        "node": {
+          "id": "0ca568a4-bd68-4aa6-aae7-0175e494cc9d",
+          "name": "express-backend"
+        }
+      },
+      {
+        "node": {
+          "id": "92df6d06-0bc3-479b-bbb1-e95588eef5b2",
+          "name": "backend-api"
+        }
+      },
+      {
+        "node": {
+          "id": "9aeb8868-852e-48d2-a155-d0de3b13b945",
+          "name": "androwash-distributor"
+        }
+      },
+      {
+        "node": {
+          "id": "eb2816d4-2e8e-4c02-b981-48a9138c5a91",
+          "name": "androwash-distributor-landing"
+        }
+      }
+    ]
+  }
+}

@@ -7,24 +7,37 @@ echo "🚀 Railway Deployment Script"
 echo "=============================="
 echo ""
 
+# Check for Railway CLI
+if ! command -v railway &> /dev/null; then
+    echo "❌ Error: Railway CLI is not installed."
+    echo "Please visit https://docs.railway.app/guides/cli for installation instructions."
+    exit 1
+fi
+
 # Backend URL (update this after backend deployment)
 BACKEND_URL="https://express-backend-production-e1da.up.railway.app"
 
 echo "📦 Step 1: Deploying Backend Service..."
-cd server
-railway up --service express-backend
-echo "✅ Backend deployed!"
+if [ -d "server" ]; then
+    cd server
+    railway up --service express-backend || { echo "❌ Backend deployment failed"; exit 1; }
+    echo "✅ Backend deployed!"
+    cd ..
+else
+    echo "❌ Error: 'server' directory not found."
+    exit 1
+fi
+
 echo ""
 
-echo "📦 Step 2: Deploying Frontend Service..."
-cd ..
-railway up
+echo "📦 Step 2: Deploying Frontend Service (Root)..."
+railway up || { echo "❌ Frontend deployment failed"; exit 1; }
 echo "✅ Frontend deployed!"
 echo ""
 
 echo "🔧 Step 3: Setting Environment Variables..."
 echo "Setting API_URL for frontend service..."
-railway variables set API_URL=$BACKEND_URL
+railway variables set API_URL=$BACKEND_URL || echo "⚠️ Warning: Failed to set API_URL via CLI. Please set it manually in Railway dashboard."
 echo "✅ Environment variable set!"
 echo ""
 
